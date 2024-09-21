@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ - 願いを共有しよう</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="Contents/style.css" rel="stylesheet" />
+    <style>
+        body { padding: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>お問い合わせ</h1>
+    </header>
+    <main>
+        <p>ご質問やご意見がございましたら、以下のフォームからお問い合わせください。</p>
+        <form id="contactForm" onsubmit="sendEmail(event)">
+            <div class="mb-3">
+                <label for="name" class="form-label">名前</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">メールアドレス</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">メッセージ</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">送信</button>
+        </form>
+    </main>
+    <footer>
+        
+    </footer>
+
+    <script>
+        function sendEmail(event) {
+            event.preventDefault(); // フォームのデフォルト送信を防ぐ
+
+            // フォームの値を取得
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+
+            // メールの内容を作成
+            var subject = 'お問い合わせ';
+            var body = '名前: ' + name + '%0D%0Aメールアドレス: ' + email + '%0D%0A%0D%0Aメッセージ:%0D%0A' + encodeURIComponent(message);
+
+            // mailtoリンクを作成
+            var mailtoLink = 'mailto:support@example.com?subject=' + encodeURIComponent(subject) + '&body=' + body;
+
+            // ユーザーのメールアプリを開く
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>
